@@ -1,3 +1,0 @@
-[submodule "ansible.mcp"]
-	path = ansible.mcp
-	url = https://github.com/ansible-collections/ansible.mcp.git
