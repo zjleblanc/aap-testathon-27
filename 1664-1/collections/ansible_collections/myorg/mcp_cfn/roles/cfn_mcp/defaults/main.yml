@@ -1,0 +1,10 @@
+# roles/cfn_mcp/defaults/main.yml
+---
+cfn_mcp_registry:
+  - name: "awslabs.cfn-mcp-server"
+    type: "stdio"
+    lang: "pypi"
+    args: []
+    description: "AWS CloudFormation MCP Server - manage AWS resources via Cloud Control API"
+
+cfn_mcp_version: "0.7.2"

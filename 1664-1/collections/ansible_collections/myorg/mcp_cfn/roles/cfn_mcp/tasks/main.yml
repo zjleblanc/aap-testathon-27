@@ -1,0 +1,32 @@
+# roles/cfn_mcp/tasks/main.yml
+---
+- name: Include install manager tasks
+  ansible.builtin.include_role:
+    name: ansible.mcp_builder.common
+    tasks_from: install_manager
+
+- name: Update MCP servers manifest
+  ansible.builtin.include_role:
+    name: ansible.mcp_builder.common
+    tasks_from: generate_manifest
+
+- name: Verify CloudFormation MCP installation
+  ansible.builtin.command:
+    cmd: mcp_manage run {{ common_package_name }} --help
+  changed_when: false
+  register: cfn_mcp_verify_result
+  failed_when: false
+
+- name: Display verification status (success)
+  ansible.builtin.debug:
+    msg: "CloudFormation MCP Server installed and verified successfully."
+  when:
+    - cfn_mcp_verify_result.rc is defined
+    - cfn_mcp_verify_result.rc == 0
+
+- name: Display verification status (failure)
+  ansible.builtin.debug:
+    msg: "CloudFormation MCP Server verification failed. Check logs for details."
+  when:
+    - cfn_mcp_verify_result.rc is defined
+    - cfn_mcp_verify_result.rc != 0

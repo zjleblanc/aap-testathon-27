@@ -1,0 +1,16 @@
+# galaxy.yml
+---
+namespace: myorg
+name: mcp_cfn
+version: 0.7.2
+readme: README.md
+authors:
+  - Your Name
+description: Custom MCP role for AWS CloudFormation MCP Server
+license_file: LICENSE
+tags:
+  - mcp
+  - aws
+  - cloudformation
+dependencies:
+  ansible.mcp_builder: ">=0.7.2"
